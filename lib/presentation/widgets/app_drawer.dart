@@ -75,7 +75,7 @@ class AppDrawer extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              'Mood Tracking',
+              'Your Personal Journey',
               style: TextStyle(
                 color: AppColors.textSecondaryDark.withValues(alpha: 0.8),
                 fontSize: 14,

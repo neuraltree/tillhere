@@ -32,8 +32,6 @@ class NavigationState {
   /// Default navigation items as specified in requirements
   static const List<NavigationItem> _defaultNavigationItems = [
     NavigationItem(id: 'home', title: 'Home', icon: '🗓', route: '/home', isActive: true),
-    NavigationItem(id: 'stats', title: 'Stats', icon: '📈', route: '/stats'),
-    NavigationItem(id: 'export', title: 'Export / Import', icon: '⬆️⬇️', route: '/export'),
     NavigationItem(id: 'settings', title: 'Settings', icon: '⚙️', route: '/settings'),
   ];
 
@@ -70,10 +68,6 @@ class NavigationState {
     switch (route) {
       case '/home':
         return 'Home';
-      case '/stats':
-        return 'Stats';
-      case '/export':
-        return 'Export / Import';
       case '/settings':
         return 'Settings';
       default:

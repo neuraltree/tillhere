@@ -390,27 +390,35 @@ class _HomePageState extends State<HomePage> {
     final moodEmoji = todayMood != null ? todayMood.round().moodEmoji : '😐';
     final letters = [moodEmoji, 'T', 'O', 'D', 'A', 'Y'];
 
-    return Container(
-      width: 40,
-      height: 120,
-      decoration: BoxDecoration(
-        color: todayColor,
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: isDark ? Colors.white : Colors.black, width: 2),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: letters.map((letter) {
-          final isEmoji = letter == moodEmoji;
-          return Text(
-            letter,
-            style: TextStyle(
-              color: isEmoji ? null : textColor, // Emoji uses default color
-              fontSize: isEmoji ? 16 : 12,
-              fontWeight: FontWeight.w600,
-            ),
-          );
-        }).toList(),
+    return Transform.scale(
+      // Make TODAY column slightly larger for emphasis
+      scale: 1.02,
+      child: Container(
+        width: 40,
+        height: 120,
+        decoration: BoxDecoration(
+          color: todayColor,
+          borderRadius: BorderRadius.circular(8),
+          // Remove white border and add shadow effect
+          boxShadow: [
+            BoxShadow(color: Colors.black.withValues(alpha: 0.3), blurRadius: 6, offset: const Offset(0, 3)),
+            BoxShadow(color: Colors.black.withValues(alpha: 0.1), blurRadius: 2, offset: const Offset(0, 1)),
+          ],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: letters.map((letter) {
+            final isEmoji = letter == moodEmoji;
+            return Text(
+              letter,
+              style: TextStyle(
+                color: isEmoji ? null : textColor, // Emoji uses default color
+                fontSize: isEmoji ? 16 : 12,
+                fontWeight: FontWeight.w600,
+              ),
+            );
+          }).toList(),
+        ),
       ),
     );
   }
@@ -452,40 +460,63 @@ class _HomePageState extends State<HomePage> {
           }
 
           final isToday = DateFormat('yyyy-MM-dd').format(day) == DateFormat('yyyy-MM-dd').format(DateTime.now());
+          final hasMoodData = consolidatedMood != null;
 
-          return Container(
-            height: 14,
-            margin: const EdgeInsets.symmetric(vertical: 1),
-            decoration: BoxDecoration(
-              color: fillColor,
-              borderRadius: BorderRadius.circular(4),
-              border: Border.all(
-                color: isToday ? (isDark ? Colors.white : Colors.black) : borderColor,
-                width: isToday ? 1.5 : 0.5,
+          return Transform.scale(
+            // Make today's block slightly larger for subtle emphasis
+            scale: isToday ? 1.1 : 1.0,
+            child: Container(
+              height: 14,
+              margin: const EdgeInsets.symmetric(vertical: 1),
+              decoration: BoxDecoration(
+                color: fillColor,
+                borderRadius: BorderRadius.circular(4),
+                // Remove borders from colored mood blocks, keep borders only for non-mood blocks (not today)
+                border: hasMoodData || isToday ? null : Border.all(color: borderColor, width: 0.5),
+                // Add enhanced shadow effect for today's block and regular shadow for mood blocks
+                boxShadow: isToday
+                    ? [
+                        BoxShadow(
+                          color: Colors.black.withValues(alpha: 0.3),
+                          blurRadius: 3,
+                          offset: const Offset(0, 1.5),
+                        ),
+                      ]
+                    : hasMoodData
+                    ? [
+                        BoxShadow(
+                          color: Colors.black.withValues(alpha: 0.15),
+                          blurRadius: 1,
+                          offset: const Offset(0, 0.5),
+                        ),
+                      ]
+                    : null,
               ),
-            ),
-            child: Stack(
-              children: [
-                // Diagonal lines for past dates with no data
-                if (consolidatedMood == null && !MoodConsolidationUtils.isFutureDate(day))
-                  CustomPaint(
-                    size: Size.infinite,
-                    painter: DiagonalLinesPainter(
-                      color: isDark ? Colors.white.withValues(alpha: 0.3) : Colors.black.withValues(alpha: 0.3),
+              child: Stack(
+                children: [
+                  // Diagonal lines for past dates with no data
+                  if (consolidatedMood == null && !MoodConsolidationUtils.isFutureDate(day))
+                    CustomPaint(
+                      size: Size.infinite,
+                      painter: DiagonalLinesPainter(
+                        color: isDark ? Colors.white.withValues(alpha: 0.3) : Colors.black.withValues(alpha: 0.3),
+                      ),
+                    ),
+                  // Day label
+                  Center(
+                    child: Text(
+                      dayLabel,
+                      style: TextStyle(
+                        color: fillColor != null
+                            ? _getContrastColor(fillColor)
+                            : (isDark ? Colors.white : Colors.black),
+                        fontSize: 8,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
-                // Day label
-                Center(
-                  child: Text(
-                    dayLabel,
-                    style: TextStyle(
-                      color: fillColor != null ? _getContrastColor(fillColor) : (isDark ? Colors.white : Colors.black),
-                      fontSize: 8,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         }),
@@ -530,6 +561,7 @@ class _HomePageState extends State<HomePage> {
 
     Color? fillColor;
     Color borderColor;
+    final hasMoodData = consolidatedMood != null;
 
     if (consolidatedMood != null) {
       // Has mood data - show mood color as fill
@@ -547,38 +579,49 @@ class _HomePageState extends State<HomePage> {
 
     final isToday = DateFormat('yyyy-MM-dd').format(day) == DateFormat('yyyy-MM-dd').format(DateTime.now());
 
-    return Container(
-      margin: const EdgeInsets.all(0.5),
-      decoration: BoxDecoration(
-        color: fillColor,
-        borderRadius: BorderRadius.circular(2),
-        border: Border.all(
-          color: isToday ? (isDark ? Colors.white : Colors.black) : borderColor,
-          width: isToday ? 1.5 : 0.5,
+    return Transform.scale(
+      // Make today's block slightly larger for subtle emphasis
+      scale: isToday ? 1.1 : 1.0,
+      child: Container(
+        margin: const EdgeInsets.all(0.5),
+        decoration: BoxDecoration(
+          color: fillColor,
+          borderRadius: BorderRadius.circular(2),
+          // Remove borders from colored mood blocks, keep borders only for non-mood blocks (not today)
+          border: hasMoodData || isToday ? null : Border.all(color: borderColor, width: 0.5),
+          // Add enhanced shadow effect for today's block and regular shadow for mood blocks
+          boxShadow: isToday
+              ? [
+                  BoxShadow(color: Colors.black.withValues(alpha: 0.3), blurRadius: 4, offset: const Offset(0, 2)),
+                  BoxShadow(color: Colors.black.withValues(alpha: 0.1), blurRadius: 1, offset: const Offset(0, 0.5)),
+                ]
+              : hasMoodData
+              ? [BoxShadow(color: Colors.black.withValues(alpha: 0.15), blurRadius: 2, offset: const Offset(0, 1))]
+              : null,
         ),
-      ),
-      child: Stack(
-        children: [
-          // Diagonal lines for past dates with no data
-          if (consolidatedMood == null && !MoodConsolidationUtils.isFutureDate(day))
-            CustomPaint(
-              size: Size.infinite,
-              painter: DiagonalLinesPainter(
-                color: isDark ? Colors.white.withValues(alpha: 0.3) : Colors.black.withValues(alpha: 0.3),
+        child: Stack(
+          children: [
+            // Diagonal lines for past dates with no data
+            if (consolidatedMood == null && !MoodConsolidationUtils.isFutureDate(day))
+              CustomPaint(
+                size: Size.infinite,
+                painter: DiagonalLinesPainter(
+                  color: isDark ? Colors.white.withValues(alpha: 0.3) : Colors.black.withValues(alpha: 0.3),
+                ),
+              ),
+            // Day number
+            Center(
+              child: Text(
+                day.day.toString(),
+                style: TextStyle(
+                  color: fillColor != null ? _getContrastColor(fillColor) : (isDark ? Colors.white : Colors.black),
+                  fontSize: 8,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
-          // Day number
-          Center(
-            child: Text(
-              day.day.toString(),
-              style: TextStyle(
-                color: fillColor != null ? _getContrastColor(fillColor) : (isDark ? Colors.white : Colors.black),
-                fontSize: 8,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -679,7 +722,7 @@ class _HomePageState extends State<HomePage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'One life!',
+          'One life...',
           style: TextStyle(
             color: isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight,
             fontSize: 14,
@@ -753,7 +796,7 @@ class _HomePageState extends State<HomePage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'One Life',
+          'One life...',
           style: TextStyle(
             color: isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight,
             fontSize: 14,
@@ -823,41 +866,50 @@ class _HomePageState extends State<HomePage> {
     }
 
     final isCurrentYear = year == DateTime.now().year;
+    final hasMoodData = consolidatedMood != null;
 
     return Expanded(
-      child: Container(
-        height: 30,
-        margin: const EdgeInsets.all(1),
-        decoration: BoxDecoration(
-          color: fillColor,
-          borderRadius: BorderRadius.circular(4),
-          border: Border.all(
-            color: isCurrentYear ? (isDark ? Colors.white : Colors.black) : borderColor,
-            width: isCurrentYear ? 2 : 1,
+      child: Transform.scale(
+        // Make current year block slightly larger for subtle emphasis
+        scale: isCurrentYear ? 1.05 : 1.0,
+        child: Container(
+          height: 30,
+          margin: const EdgeInsets.all(1),
+          decoration: BoxDecoration(
+            color: fillColor,
+            borderRadius: BorderRadius.circular(4),
+            // Remove borders from colored mood blocks, keep borders only for non-mood blocks (not current year)
+            border: hasMoodData || isCurrentYear ? null : Border.all(color: borderColor, width: 1),
+            // Add enhanced shadow effect for current year block and regular shadow for mood blocks
+            boxShadow: isCurrentYear
+                ? [BoxShadow(color: Colors.black.withValues(alpha: 0.3), blurRadius: 4, offset: const Offset(0, 2))]
+                : hasMoodData
+                ? [BoxShadow(color: Colors.black.withValues(alpha: 0.15), blurRadius: 2, offset: const Offset(0, 1))]
+                : null,
           ),
-        ),
-        child: Stack(
-          children: [
-            // Diagonal lines for past years with no data
-            if (consolidatedMood == null && !MoodConsolidationUtils.isFutureYear(year))
-              CustomPaint(
-                size: Size.infinite,
-                painter: DiagonalLinesPainter(
-                  color: isDark ? Colors.white.withValues(alpha: 0.3) : Colors.black.withValues(alpha: 0.3),
+          child: Stack(
+            children: [
+              // Diagonal lines for past years with no data
+              if (consolidatedMood == null && !MoodConsolidationUtils.isFutureYear(year))
+                CustomPaint(
+                  size: Size.infinite,
+                  painter: DiagonalLinesPainter(
+                    color: isDark ? Colors.white.withValues(alpha: 0.3) : Colors.black.withValues(alpha: 0.3),
+                  ),
+                ),
+              // Age number
+              Center(
+                child: Text(
+                  (year - birthDate.year).toString(), // Show age for that year
+                  style: TextStyle(
+                    color: fillColor != null ? _getContrastColor(fillColor) : (isDark ? Colors.white : Colors.black),
+                    fontSize: 10,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
-            // Age number
-            Center(
-              child: Text(
-                (year - birthDate.year).toString(), // Show age for that year
-                style: TextStyle(
-                  color: fillColor != null ? _getContrastColor(fillColor) : (isDark ? Colors.white : Colors.black),
-                  fontSize: 10,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

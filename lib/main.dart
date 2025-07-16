@@ -31,7 +31,7 @@ class TillHereApp extends StatelessWidget {
         ChangeNotifierProvider<SettingsProvider>.value(value: DependencyInjection.settingsProvider),
       ],
       child: MaterialApp(
-        title: 'tilhere... - Mood Tracking',
+        title: 'tilhere... - Your Personal Journey',
         debugShowCheckedModeBanner: false,
 
         // Theme configuration

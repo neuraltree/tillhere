@@ -171,9 +171,10 @@ class _WeeklyHeatmapWidgetState extends State<WeeklyHeatmapWidget> {
 
     Color blockColor;
     if (dayMoods.isNotEmpty) {
-      // Calculate average mood for the day
+      // Calculate average mood for the day and round to nearest integer
       final averageMood = dayMoods.map((e) => e.moodScore).reduce((a, b) => a + b) / dayMoods.length;
-      blockColor = MoodVocabulary.getColorForScore(averageMood);
+      final roundedMood = averageMood.roundToDouble();
+      blockColor = MoodVocabulary.getColorForScore(roundedMood);
     } else if (date.isAfter(DateTime.now())) {
       // Future days - light grey
       blockColor = Colors.grey.shade300;
@@ -182,33 +183,61 @@ class _WeeklyHeatmapWidgetState extends State<WeeklyHeatmapWidget> {
       blockColor = Colors.grey.shade400;
     }
 
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 2),
-      decoration: BoxDecoration(
-        color: blockColor,
-        borderRadius: BorderRadius.circular(8),
-        border: isToday ? Border.all(color: isDark ? Colors.white : Colors.black, width: 2) : null,
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            DateFormat('E').format(date), // Mon, Tue, etc.
-            style: TextStyle(color: _getTextColorForBackground(blockColor), fontSize: 10, fontWeight: FontWeight.w500),
-          ),
-          const SizedBox(height: 2),
-          Text(
-            date.day.toString(),
-            style: TextStyle(color: _getTextColorForBackground(blockColor), fontSize: 16, fontWeight: FontWeight.w600),
-          ),
-          if (dayMoods.isNotEmpty) ...[
+    // Determine if this block has mood data (colored)
+    final hasMoodData = dayMoods.isNotEmpty;
+
+    return Transform.scale(
+      // Make today's block slightly larger for subtle emphasis
+      scale: isToday ? 1.05 : 1.0,
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 2),
+        decoration: BoxDecoration(
+          color: blockColor,
+          borderRadius: BorderRadius.circular(8),
+          // Remove white border entirely
+          // Add enhanced shadow effect for today's block and regular shadow for mood blocks
+          boxShadow: isToday
+              ? [
+                  BoxShadow(color: Colors.black.withValues(alpha: 0.4), blurRadius: 8, offset: const Offset(0, 3)),
+                  BoxShadow(color: Colors.black.withValues(alpha: 0.1), blurRadius: 2, offset: const Offset(0, 1)),
+                ]
+              : hasMoodData
+              ? [BoxShadow(color: Colors.black.withValues(alpha: 0.2), blurRadius: 4, offset: const Offset(0, 2))]
+              : null,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              DateFormat('E').format(date), // Mon, Tue, etc.
+              style: TextStyle(
+                color: _getTextColorForBackground(blockColor),
+                fontSize: 10,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
             const SizedBox(height: 2),
             Text(
-              '${dayMoods.length}',
-              style: TextStyle(color: _getTextColorForBackground(blockColor), fontSize: 8, fontWeight: FontWeight.w400),
+              date.day.toString(),
+              style: TextStyle(
+                color: _getTextColorForBackground(blockColor),
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
             ),
+            if (dayMoods.isNotEmpty) ...[
+              const SizedBox(height: 2),
+              Text(
+                '${dayMoods.length}',
+                style: TextStyle(
+                  color: _getTextColorForBackground(blockColor),
+                  fontSize: 8,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ],
           ],
-        ],
+        ),
       ),
     );
   }

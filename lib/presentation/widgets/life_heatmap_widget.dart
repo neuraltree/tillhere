@@ -320,15 +320,18 @@ class _LifeHeatmapWidgetState extends State<LifeHeatmapWidget> {
     const dotSpacing = 1.0;
 
     Color dotColor;
+    bool hasMoodData = false;
 
     if (weekIndex < livedWeeks) {
       // Past weeks - check for mood data
       final weekMoods = moodsByWeek[weekIndex] ?? [];
 
       if (weekMoods.isNotEmpty) {
-        // Calculate average mood for the week
+        // Calculate average mood for the week and round to nearest integer
         final averageMood = weekMoods.map((e) => e.moodScore).reduce((a, b) => a + b) / weekMoods.length;
-        dotColor = MoodVocabulary.getColorForScore(averageMood);
+        final roundedMood = averageMood.roundToDouble();
+        dotColor = MoodVocabulary.getColorForScore(roundedMood);
+        hasMoodData = true;
       } else {
         // No mood data - grey
         dotColor = Colors.grey.shade400;
@@ -338,11 +341,29 @@ class _LifeHeatmapWidgetState extends State<LifeHeatmapWidget> {
       dotColor = Colors.grey.shade200;
     }
 
-    return Container(
-      width: dotSize,
-      height: dotSize,
-      margin: const EdgeInsets.all(dotSpacing / 2),
-      decoration: BoxDecoration(color: dotColor, shape: BoxShape.circle),
+    // Check if this week represents the current week
+    final now = DateTime.now();
+    final currentWeekIndex = now.difference(birthDate).inDays ~/ 7;
+    final isCurrentWeek = weekIndex == currentWeekIndex;
+
+    return Transform.scale(
+      // Make current week dot slightly larger for subtle emphasis
+      scale: isCurrentWeek ? 1.3 : 1.0,
+      child: Container(
+        width: dotSize,
+        height: dotSize,
+        margin: const EdgeInsets.all(dotSpacing / 2),
+        decoration: BoxDecoration(
+          color: dotColor,
+          shape: BoxShape.circle,
+          // Add enhanced shadow effect for current week and regular shadow for mood dots
+          boxShadow: isCurrentWeek
+              ? [BoxShadow(color: Colors.black.withValues(alpha: 0.5), blurRadius: 2, offset: const Offset(0, 1))]
+              : hasMoodData
+              ? [BoxShadow(color: Colors.black.withValues(alpha: 0.3), blurRadius: 1, offset: const Offset(0, 0.5))]
+              : null,
+        ),
+      ),
     );
   }
 
