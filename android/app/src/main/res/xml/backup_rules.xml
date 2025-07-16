@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- Include app data for backup -->
+    <include domain="database" />
+    <include domain="sharedpref" />
+    <include domain="file" />
+    
+    <!-- Include specific directories -->
+    <include domain="file" path="." />
+    
+    <!-- Exclude sensitive data -->
+    <exclude domain="database" path="temp.db" />
+    <exclude domain="file" path="cache/" />
+    <exclude domain="file" path="temp/" />
+    <exclude domain="sharedpref" path="temp_prefs.xml" />
+    
+    <!-- Include user data -->
+    <include domain="file" path="user_data/" />
+    <include domain="database" path="app_database.db" />
+    <include domain="sharedpref" path="user_preferences.xml" />
+    <include domain="sharedpref" path="app_settings.xml" />
+</full-backup-content>

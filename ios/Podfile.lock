@@ -1,0 +1,42 @@
+PODS:
+  - Flutter (1.0.0)
+  - path_provider_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
+  - share_plus (0.0.1):
+    - Flutter
+  - sqflite_darwin (0.0.4):
+    - Flutter
+    - FlutterMacOS
+  - workmanager_apple (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
+  - share_plus (from `.symlinks/plugins/share_plus/ios`)
+  - sqflite_darwin (from `.symlinks/plugins/sqflite_darwin/darwin`)
+  - workmanager_apple (from `.symlinks/plugins/workmanager_apple/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  path_provider_foundation:
+    :path: ".symlinks/plugins/path_provider_foundation/darwin"
+  share_plus:
+    :path: ".symlinks/plugins/share_plus/ios"
+  sqflite_darwin:
+    :path: ".symlinks/plugins/sqflite_darwin/darwin"
+  workmanager_apple:
+    :path: ".symlinks/plugins/workmanager_apple/ios"
+
+SPEC CHECKSUMS:
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
+  share_plus: 8b6f8b3447e494cca5317c8c3073de39b3600d1f
+  sqflite_darwin: 5a7236e3b501866c1c9befc6771dfd73ffb8702d
+  workmanager_apple: 0b8b21579ac211f9119dcfed50fe5f9b1822c7d5
+
+PODFILE CHECKSUM: 251cb053df7158f337c0712f2ab29f4e0fa474ce
+
+COCOAPODS: 1.16.2

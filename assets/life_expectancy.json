@@ -1,0 +1,1306 @@
+{
+  "metadata": {
+    "source": "World Bank API",
+    "indicator": "SP.DYN.LE00.IN",
+    "description": "Life expectancy at birth, total (years)",
+    "generatedAt": "2025-07-15T20:16:17.774081",
+    "totalCountries": 185
+  },
+  "countries": {
+    "DO": {
+      "name": "Dominican Republic",
+      "iso3": "DOM",
+      "lifeExpectancy": 73.72,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.774983"
+    },
+    "SY": {
+      "name": "Syrian Arab Republic",
+      "iso3": "SYR",
+      "lifeExpectancy": 72.12,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.775173"
+    },
+    "PF": {
+      "name": "French Polynesia",
+      "iso3": "PYF",
+      "lifeExpectancy": 84.07,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.775333"
+    },
+    "UA": {
+      "name": "Ukraine",
+      "iso3": "UKR",
+      "lifeExpectancy": 73.422,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.775564"
+    },
+    "BB": {
+      "name": "Barbados",
+      "iso3": "BRB",
+      "lifeExpectancy": 76.178,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.775660"
+    },
+    "PS": {
+      "name": "West Bank and Gaza",
+      "iso3": "PSE",
+      "lifeExpectancy": 65.17,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.775800"
+    },
+    "GE": {
+      "name": "Georgia",
+      "iso3": "GEO",
+      "lifeExpectancy": 74.496,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.775947"
+    },
+    "DZ": {
+      "name": "Algeria",
+      "iso3": "DZA",
+      "lifeExpectancy": 76.261,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.776092"
+    },
+    "TR": {
+      "name": "Turkiye",
+      "iso3": "TUR",
+      "lifeExpectancy": 77.156,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.776269"
+    },
+    "MK": {
+      "name": "North Macedonia",
+      "iso3": "MKD",
+      "lifeExpectancy": 75.3160975609756,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.776430"
+    },
+    "CD": {
+      "name": "Congo, Dem. Rep.",
+      "iso3": "COD",
+      "lifeExpectancy": 61.895,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.776647"
+    },
+    "SL": {
+      "name": "Sierra Leone",
+      "iso3": "SLE",
+      "lifeExpectancy": 61.786,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.776806"
+    },
+    "HU": {
+      "name": "Hungary",
+      "iso3": "HUN",
+      "lifeExpectancy": 76.7707317073171,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.776949"
+    },
+    "AD": {
+      "name": "Andorra",
+      "iso3": "AND",
+      "lifeExpectancy": 84.041,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.776977"
+    },
+    "RS": {
+      "name": "Serbia",
+      "iso3": "SRB",
+      "lifeExpectancy": 76.2209756097561,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.777045"
+    },
+    "LT": {
+      "name": "Lithuania",
+      "iso3": "LTU",
+      "lifeExpectancy": 76.9878048780488,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.777187"
+    },
+    "EE": {
+      "name": "Estonia",
+      "iso3": "EST",
+      "lifeExpectancy": 78.490243902439,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.777255"
+    },
+    "IS": {
+      "name": "Iceland",
+      "iso3": "ISL",
+      "lifeExpectancy": 82.6073170731707,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.777398"
+    },
+    "LA": {
+      "name": "Lao PDR",
+      "iso3": "LAO",
+      "lifeExpectancy": 68.964,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.777462"
+    },
+    "BN": {
+      "name": "Brunei Darussalam",
+      "iso3": "BRN",
+      "lifeExpectancy": 75.327,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.777527"
+    },
+    "MG": {
+      "name": "Madagascar",
+      "iso3": "MDG",
+      "lifeExpectancy": 63.632,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.777669"
+    },
+    "CH": {
+      "name": "Switzerland",
+      "iso3": "CHE",
+      "lifeExpectancy": 84.0560975609756,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.777697"
+    },
+    "CI": {
+      "name": "Cote d'Ivoire",
+      "iso3": "CIV",
+      "lifeExpectancy": 61.944,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.777871"
+    },
+    "SA": {
+      "name": "Saudi Arabia",
+      "iso3": "SAU",
+      "lifeExpectancy": 78.732,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.778083"
+    },
+    "GH": {
+      "name": "Ghana",
+      "iso3": "GHA",
+      "lifeExpectancy": 65.498,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.778144"
+    },
+    "UY": {
+      "name": "Uruguay",
+      "iso3": "URY",
+      "lifeExpectancy": 78.138,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.778210"
+    },
+    "BO": {
+      "name": "Bolivia",
+      "iso3": "BOL",
+      "lifeExpectancy": 68.581,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.778268"
+    },
+    "IR": {
+      "name": "Iran, Islamic Rep.",
+      "iso3": "IRN",
+      "lifeExpectancy": 77.654,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.778400"
+    },
+    "BZ": {
+      "name": "Belize",
+      "iso3": "BLZ",
+      "lifeExpectancy": 73.566,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.778542"
+    },
+    "NL": {
+      "name": "Netherlands",
+      "iso3": "NLD",
+      "lifeExpectancy": 81.9146341463415,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.778573"
+    },
+    "LU": {
+      "name": "Luxembourg",
+      "iso3": "LUX",
+      "lifeExpectancy": 83.3585365853659,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.778599"
+    },
+    "PK": {
+      "name": "Pakistan",
+      "iso3": "PAK",
+      "lifeExpectancy": 67.649,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.778741"
+    },
+    "AE": {
+      "name": "United Arab Emirates",
+      "iso3": "ARE",
+      "lifeExpectancy": 82.909,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.778925"
+    },
+    "ST": {
+      "name": "Sao Tome and Principe",
+      "iso3": "STP",
+      "lifeExpectancy": 69.718,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.779133"
+    },
+    "JM": {
+      "name": "Jamaica",
+      "iso3": "JAM",
+      "lifeExpectancy": 71.479,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.779263"
+    },
+    "HT": {
+      "name": "Haiti",
+      "iso3": "HTI",
+      "lifeExpectancy": 64.936,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.779449"
+    },
+    "TJ": {
+      "name": "Tajikistan",
+      "iso3": "TJK",
+      "lifeExpectancy": 71.79,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.779503"
+    },
+    "SM": {
+      "name": "San Marino",
+      "iso3": "SMR",
+      "lifeExpectancy": 85.706,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.779530"
+    },
+    "KR": {
+      "name": "Korea, Rep.",
+      "iso3": "KOR",
+      "lifeExpectancy": 83.4292682926829,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.779664"
+    },
+    "GD": {
+      "name": "Grenada",
+      "iso3": "GRD",
+      "lifeExpectancy": 75.205,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.779733"
+    },
+    "GQ": {
+      "name": "Equatorial Guinea",
+      "iso3": "GNQ",
+      "lifeExpectancy": 63.707,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.779874"
+    },
+    "KG": {
+      "name": "Kyrgyz Republic",
+      "iso3": "KGZ",
+      "lifeExpectancy": 72.2487804878049,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.779987"
+    },
+    "PG": {
+      "name": "Papua New Guinea",
+      "iso3": "PNG",
+      "lifeExpectancy": 66.134,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.780151"
+    },
+    "QA": {
+      "name": "Qatar",
+      "iso3": "QAT",
+      "lifeExpectancy": 82.368,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.780452"
+    },
+    "TM": {
+      "name": "Turkmenistan",
+      "iso3": "TKM",
+      "lifeExpectancy": 70.073,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.780501"
+    },
+    "DE": {
+      "name": "Germany",
+      "iso3": "DEU",
+      "lifeExpectancy": 80.5414634146342,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.780659"
+    },
+    "SS": {
+      "name": "South Sudan",
+      "iso3": "SSD",
+      "lifeExpectancy": 57.617,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.780802"
+    },
+    "OM": {
+      "name": "Oman",
+      "iso3": "OMN",
+      "lifeExpectancy": 80.031,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.780865"
+    },
+    "MT": {
+      "name": "Malta",
+      "iso3": "MLT",
+      "lifeExpectancy": 83.5073170731707,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.780895"
+    },
+    "RU": {
+      "name": "Russian Federation",
+      "iso3": "RUS",
+      "lifeExpectancy": 73.2546341463415,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.781046"
+    },
+    "PL": {
+      "name": "Poland",
+      "iso3": "POL",
+      "lifeExpectancy": 78.5073170731707,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.781182"
+    },
+    "LR": {
+      "name": "Liberia",
+      "iso3": "LBR",
+      "lifeExpectancy": 62.163,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.781245"
+    },
+    "EC": {
+      "name": "Ecuador",
+      "iso3": "ECU",
+      "lifeExpectancy": 77.392,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.781309"
+    },
+    "PY": {
+      "name": "Paraguay",
+      "iso3": "PRY",
+      "lifeExpectancy": 73.844,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.781444"
+    },
+    "BH": {
+      "name": "Bahrain",
+      "iso3": "BHR",
+      "lifeExpectancy": 81.284,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.781514"
+    },
+    "ZW": {
+      "name": "Zimbabwe",
+      "iso3": "ZWE",
+      "lifeExpectancy": 62.775,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.781571"
+    },
+    "FI": {
+      "name": "Finland",
+      "iso3": "FIN",
+      "lifeExpectancy": 81.6853658536585,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.781728"
+    },
+    "MA": {
+      "name": "Morocco",
+      "iso3": "MAR",
+      "lifeExpectancy": 75.313,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.781786"
+    },
+    "CN": {
+      "name": "China",
+      "iso3": "CHN",
+      "lifeExpectancy": 77.953,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.781914"
+    },
+    "MX": {
+      "name": "Mexico",
+      "iso3": "MEX",
+      "lifeExpectancy": 75.069,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.781973"
+    },
+    "NG": {
+      "name": "Nigeria",
+      "iso3": "NGA",
+      "lifeExpectancy": 54.462,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.782085"
+    },
+    "UG": {
+      "name": "Uganda",
+      "iso3": "UGA",
+      "lifeExpectancy": 68.252,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.782143"
+    },
+    "NR": {
+      "name": "Nauru",
+      "iso3": "NRU",
+      "lifeExpectancy": 62.109,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.782256"
+    },
+    "LK": {
+      "name": "Sri Lanka",
+      "iso3": "LKA",
+      "lifeExpectancy": 77.483,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.782391"
+    },
+    "BD": {
+      "name": "Bangladesh",
+      "iso3": "BGD",
+      "lifeExpectancy": 74.672,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.782541"
+    },
+    "IL": {
+      "name": "Israel",
+      "iso3": "ISR",
+      "lifeExpectancy": 83.1951219512195,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.782599"
+    },
+    "TT": {
+      "name": "Trinidad and Tobago",
+      "iso3": "TTO",
+      "lifeExpectancy": 73.49,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.782659"
+    },
+    "MM": {
+      "name": "Myanmar",
+      "iso3": "MMR",
+      "lifeExpectancy": 66.889,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.782794"
+    },
+    "SK": {
+      "name": "Slovak Republic",
+      "iso3": "SVK",
+      "lifeExpectancy": 78.0170731707317,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.782933"
+    },
+    "ML": {
+      "name": "Mali",
+      "iso3": "MLI",
+      "lifeExpectancy": 60.439,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.782993"
+    },
+    "AZ": {
+      "name": "Azerbaijan",
+      "iso3": "AZE",
+      "lifeExpectancy": 74.429,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.783110"
+    },
+    "YE": {
+      "name": "Yemen, Rep.",
+      "iso3": "YEM",
+      "lifeExpectancy": 69.295,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.783250"
+    },
+    "US": {
+      "name": "United States",
+      "iso3": "USA",
+      "lifeExpectancy": 78.3853658536585,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.783390"
+    },
+    "GB": {
+      "name": "United Kingdom",
+      "iso3": "GBR",
+      "lifeExpectancy": 81.2380975609756,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.783527"
+    },
+    "PT": {
+      "name": "Portugal",
+      "iso3": "PRT",
+      "lifeExpectancy": 82.2804878048781,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.783552"
+    },
+    "BE": {
+      "name": "Belgium",
+      "iso3": "BEL",
+      "lifeExpectancy": 82.3975609756098,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.783576"
+    },
+    "GW": {
+      "name": "Guinea-Bissau",
+      "iso3": "GNB",
+      "lifeExpectancy": 64.085,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.783735"
+    },
+    "PA": {
+      "name": "Panama",
+      "iso3": "PAN",
+      "lifeExpectancy": 79.594,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.783813"
+    },
+    "AO": {
+      "name": "Angola",
+      "iso3": "AGO",
+      "lifeExpectancy": 64.617,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.783898"
+    },
+    "CV": {
+      "name": "Cabo Verde",
+      "iso3": "CPV",
+      "lifeExpectancy": 76.059,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.784066"
+    },
+    "MY": {
+      "name": "Malaysia",
+      "iso3": "MYS",
+      "lifeExpectancy": 76.657,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.784210"
+    },
+    "CO": {
+      "name": "Colombia",
+      "iso3": "COL",
+      "lifeExpectancy": 77.725,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.784274"
+    },
+    "SG": {
+      "name": "Singapore",
+      "iso3": "SGP",
+      "lifeExpectancy": 82.8951219512195,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.784336"
+    },
+    "GN": {
+      "name": "Guinea",
+      "iso3": "GIN",
+      "lifeExpectancy": 60.74,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.784597"
+    },
+    "BI": {
+      "name": "Burundi",
+      "iso3": "BDI",
+      "lifeExpectancy": 63.651,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.784736"
+    },
+    "KM": {
+      "name": "Comoros",
+      "iso3": "COM",
+      "lifeExpectancy": 66.777,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.784797"
+    },
+    "IT": {
+      "name": "Italy",
+      "iso3": "ITA",
+      "lifeExpectancy": 83.7,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.784909"
+    },
+    "WS": {
+      "name": "Samoa",
+      "iso3": "WSM",
+      "lifeExpectancy": 71.698,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.785052"
+    },
+    "CZ": {
+      "name": "Czechia",
+      "iso3": "CZE",
+      "lifeExpectancy": 79.8780487804878,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.785150"
+    },
+    "MU": {
+      "name": "Mauritius",
+      "iso3": "MUS",
+      "lifeExpectancy": 73.4121951219512,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.785290"
+    },
+    "SR": {
+      "name": "Suriname",
+      "iso3": "SUR",
+      "lifeExpectancy": 73.631,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.785347"
+    },
+    "HR": {
+      "name": "Croatia",
+      "iso3": "HRV",
+      "lifeExpectancy": 78.4731707317073,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.785488"
+    },
+    "VU": {
+      "name": "Vanuatu",
+      "iso3": "VUT",
+      "lifeExpectancy": 71.477,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.785628"
+    },
+    "TL": {
+      "name": "Timor-Leste",
+      "iso3": "TLS",
+      "lifeExpectancy": 67.689,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.785769"
+    },
+    "AU": {
+      "name": "Australia",
+      "iso3": "AUS",
+      "lifeExpectancy": 83.0512195121951,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.785923"
+    },
+    "CL": {
+      "name": "Chile",
+      "iso3": "CHL",
+      "lifeExpectancy": 81.167,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.785977"
+    },
+    "MC": {
+      "name": "Monaco",
+      "iso3": "MCO",
+      "lifeExpectancy": 86.372,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.786004"
+    },
+    "TZ": {
+      "name": "Tanzania",
+      "iso3": "TZA",
+      "lifeExpectancy": 66.995,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.786151"
+    },
+    "VC": {
+      "name": "St. Vincent and the Grenadines",
+      "iso3": "VCT",
+      "lifeExpectancy": 71.23,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.786307"
+    },
+    "ET": {
+      "name": "Ethiopia",
+      "iso3": "ETH",
+      "lifeExpectancy": 67.315,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.786367"
+    },
+    "GM": {
+      "name": "Gambia, The",
+      "iso3": "GMB",
+      "lifeExpectancy": 65.86,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.786486"
+    },
+    "KN": {
+      "name": "St. Kitts and Nevis",
+      "iso3": "KNA",
+      "lifeExpectancy": 72.145,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.786544"
+    },
+    "NI": {
+      "name": "Nicaragua",
+      "iso3": "NIC",
+      "lifeExpectancy": 74.947,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.786603"
+    },
+    "RW": {
+      "name": "Rwanda",
+      "iso3": "RWA",
+      "lifeExpectancy": 67.785,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.786742"
+    },
+    "MV": {
+      "name": "Maldives",
+      "iso3": "MDV",
+      "lifeExpectancy": 81.041,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.786875"
+    },
+    "CY": {
+      "name": "Cyprus",
+      "iso3": "CYP",
+      "lifeExpectancy": 81.648,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.786910"
+    },
+    "TO": {
+      "name": "Tonga",
+      "iso3": "TON",
+      "lifeExpectancy": 72.895,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.786972"
+    },
+    "TV": {
+      "name": "Tuvalu",
+      "iso3": "TUV",
+      "lifeExpectancy": 67.105,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.787030"
+    },
+    "GA": {
+      "name": "Gabon",
+      "iso3": "GAB",
+      "lifeExpectancy": 68.337,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.787142"
+    },
+    "KW": {
+      "name": "Kuwait",
+      "iso3": "KWT",
+      "lifeExpectancy": 83.1878048780488,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.787199"
+    },
+    "IN": {
+      "name": "India",
+      "iso3": "IND",
+      "lifeExpectancy": 72.003,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.787337"
+    },
+    "PW": {
+      "name": "Palau",
+      "iso3": "PLW",
+      "lifeExpectancy": 69.269,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.787397"
+    },
+    "BF": {
+      "name": "Burkina Faso",
+      "iso3": "BFA",
+      "lifeExpectancy": 61.092,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.787546"
+    },
+    "LI": {
+      "name": "Liechtenstein",
+      "iso3": "LIE",
+      "lifeExpectancy": 84.8414634146342,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.787572"
+    },
+    "NP": {
+      "name": "Nepal",
+      "iso3": "NPL",
+      "lifeExpectancy": 70.354,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.787701"
+    },
+    "GT": {
+      "name": "Guatemala",
+      "iso3": "GTM",
+      "lifeExpectancy": 72.602,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.787761"
+    },
+    "NE": {
+      "name": "Niger",
+      "iso3": "NER",
+      "lifeExpectancy": 61.183,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.787831"
+    },
+    "BS": {
+      "name": "Bahamas, The",
+      "iso3": "BHS",
+      "lifeExpectancy": 74.552,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.787890"
+    },
+    "MZ": {
+      "name": "Mozambique",
+      "iso3": "MOZ",
+      "lifeExpectancy": 63.611,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.787950"
+    },
+    "CU": {
+      "name": "Cuba",
+      "iso3": "CUB",
+      "lifeExpectancy": 78.085,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.788004"
+    },
+    "AL": {
+      "name": "Albania",
+      "iso3": "ALB",
+      "lifeExpectancy": 79.602,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.788060"
+    },
+    "DK": {
+      "name": "Denmark",
+      "iso3": "DNK",
+      "lifeExpectancy": 81.8536585365854,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.788177"
+    },
+    "FR": {
+      "name": "France",
+      "iso3": "FRA",
+      "lifeExpectancy": 82.9292682926829,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.788328"
+    },
+    "DJ": {
+      "name": "Djibouti",
+      "iso3": "DJI",
+      "lifeExpectancy": 65.987,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.788478"
+    },
+    "ZM": {
+      "name": "Zambia",
+      "iso3": "ZMB",
+      "lifeExpectancy": 66.349,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.788543"
+    },
+    "AM": {
+      "name": "Armenia",
+      "iso3": "ARM",
+      "lifeExpectancy": 77.4658536585366,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.788612"
+    },
+    "BR": {
+      "name": "Brazil",
+      "iso3": "BRA",
+      "lifeExpectancy": 75.848,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.788758"
+    },
+    "BG": {
+      "name": "Bulgaria",
+      "iso3": "BGR",
+      "lifeExpectancy": 75.7073170731707,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.788823"
+    },
+    "RO": {
+      "name": "Romania",
+      "iso3": "ROU",
+      "lifeExpectancy": 76.6073170731707,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.788888"
+    },
+    "JP": {
+      "name": "Japan",
+      "iso3": "JPN",
+      "lifeExpectancy": 84.0412195121951,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.789034"
+    },
+    "VN": {
+      "name": "Viet Nam",
+      "iso3": "VNM",
+      "lifeExpectancy": 74.588,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.789093"
+    },
+    "CA": {
+      "name": "Canada",
+      "iso3": "CAN",
+      "lifeExpectancy": 81.6465853658537,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.789162"
+    },
+    "MN": {
+      "name": "Mongolia",
+      "iso3": "MNG",
+      "lifeExpectancy": 72.1224390243902,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.789266"
+    },
+    "SI": {
+      "name": "Slovenia",
+      "iso3": "SVN",
+      "lifeExpectancy": 81.9780487804878,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.789400"
+    },
+    "ZA": {
+      "name": "South Africa",
+      "iso3": "ZAF",
+      "lifeExpectancy": 66.139,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.789544"
+    },
+    "TN": {
+      "name": "Tunisia",
+      "iso3": "TUN",
+      "lifeExpectancy": 76.508,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.789596"
+    },
+    "MW": {
+      "name": "Malawi",
+      "iso3": "MWI",
+      "lifeExpectancy": 67.353,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.789709"
+    },
+    "GY": {
+      "name": "Guyana",
+      "iso3": "GUY",
+      "lifeExpectancy": 70.18,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.789764"
+    },
+    "KZ": {
+      "name": "Kazakhstan",
+      "iso3": "KAZ",
+      "lifeExpectancy": 74.402,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.789876"
+    },
+    "FJ": {
+      "name": "Fiji",
+      "iso3": "FJI",
+      "lifeExpectancy": 67.316,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.789931"
+    },
+    "SE": {
+      "name": "Sweden",
+      "iso3": "SWE",
+      "lifeExpectancy": 83.309756097561,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.790069"
+    },
+    "AT": {
+      "name": "Austria",
+      "iso3": "AUT",
+      "lifeExpectancy": 81.5414634146342,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.790094"
+    },
+    "CM": {
+      "name": "Cameroon",
+      "iso3": "CMR",
+      "lifeExpectancy": 63.7,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.790237"
+    },
+    "SN": {
+      "name": "Senegal",
+      "iso3": "SEN",
+      "lifeExpectancy": 68.683,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.790290"
+    },
+    "CF": {
+      "name": "Central African Republic",
+      "iso3": "CAF",
+      "lifeExpectancy": 57.408,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.790343"
+    },
+    "HN": {
+      "name": "Honduras",
+      "iso3": "HND",
+      "lifeExpectancy": 72.884,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.790395"
+    },
+    "NC": {
+      "name": "New Caledonia",
+      "iso3": "NCL",
+      "lifeExpectancy": 78.766,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.790528"
+    },
+    "DM": {
+      "name": "Dominica",
+      "iso3": "DMA",
+      "lifeExpectancy": 71.132,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.790586"
+    },
+    "ME": {
+      "name": "Montenegro",
+      "iso3": "MNE",
+      "lifeExpectancy": 77.5878048780488,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.790645"
+    },
+    "SB": {
+      "name": "Solomon Islands",
+      "iso3": "SLB",
+      "lifeExpectancy": 70.528,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.790812"
+    },
+    "FM": {
+      "name": "Micronesia, Fed. Sts.",
+      "iso3": "FSM",
+      "lifeExpectancy": 67.198,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.791130"
+    },
+    "VE": {
+      "name": "Venezuela, RB",
+      "iso3": "VEN",
+      "lifeExpectancy": 72.514,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.791191"
+    },
+    "ER": {
+      "name": "Eritrea",
+      "iso3": "ERI",
+      "lifeExpectancy": 68.624,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.791408"
+    },
+    "ID": {
+      "name": "Indonesia",
+      "iso3": "IDN",
+      "lifeExpectancy": 71.146,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.791633"
+    },
+    "UZ": {
+      "name": "Uzbekistan",
+      "iso3": "UZB",
+      "lifeExpectancy": 72.388,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.791785"
+    },
+    "LC": {
+      "name": "St. Lucia",
+      "iso3": "LCA",
+      "lifeExpectancy": 72.697,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.791927"
+    },
+    "NZ": {
+      "name": "New Zealand",
+      "iso3": "NZL",
+      "lifeExpectancy": 83.0048780487805,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.791964"
+    },
+    "KH": {
+      "name": "Cambodia",
+      "iso3": "KHM",
+      "lifeExpectancy": 70.668,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.792041"
+    },
+    "IQ": {
+      "name": "Iraq",
+      "iso3": "IRQ",
+      "lifeExpectancy": 72.324,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.792121"
+    },
+    "EG": {
+      "name": "Egypt, Arab Rep.",
+      "iso3": "EGY",
+      "lifeExpectancy": 71.633,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.792275"
+    },
+    "LV": {
+      "name": "Latvia",
+      "iso3": "LVA",
+      "lifeExpectancy": 75.6780487804878,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.792421"
+    },
+    "NO": {
+      "name": "Norway",
+      "iso3": "NOR",
+      "lifeExpectancy": 83.1121951219512,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.792569"
+    },
+    "BY": {
+      "name": "Belarus",
+      "iso3": "BLR",
+      "lifeExpectancy": 74.1837804878049,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.792627"
+    },
+    "PH": {
+      "name": "Philippines",
+      "iso3": "PHL",
+      "lifeExpectancy": 69.833,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.792809"
+    },
+    "AF": {
+      "name": "Afghanistan",
+      "iso3": "AFG",
+      "lifeExpectancy": 66.035,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.792865"
+    },
+    "TH": {
+      "name": "Thailand",
+      "iso3": "THA",
+      "lifeExpectancy": 76.412,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.792929"
+    },
+    "JO": {
+      "name": "Jordan",
+      "iso3": "JOR",
+      "lifeExpectancy": 77.814,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.792989"
+    },
+    "SV": {
+      "name": "El Salvador",
+      "iso3": "SLV",
+      "lifeExpectancy": 72.099,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.793044"
+    },
+    "AG": {
+      "name": "Antigua and Barbuda",
+      "iso3": "ATG",
+      "lifeExpectancy": 77.598,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.793098"
+    },
+    "KI": {
+      "name": "Kiribati",
+      "iso3": "KIR",
+      "lifeExpectancy": 66.473,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.793154"
+    },
+    "LB": {
+      "name": "Lebanon",
+      "iso3": "LBN",
+      "lifeExpectancy": 77.817,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.793214"
+    },
+    "ES": {
+      "name": "Spain",
+      "iso3": "ESP",
+      "lifeExpectancy": 83.8829268292683,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.793347"
+    },
+    "IE": {
+      "name": "Ireland",
+      "iso3": "IRL",
+      "lifeExpectancy": 82.8609756097561,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.793376"
+    },
+    "SC": {
+      "name": "Seychelles",
+      "iso3": "SYC",
+      "lifeExpectancy": 74.9585365853659,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.793506"
+    },
+    "AR": {
+      "name": "Argentina",
+      "iso3": "ARG",
+      "lifeExpectancy": 77.395,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.793708"
+    },
+    "MD": {
+      "name": "Moldova",
+      "iso3": "MDA",
+      "lifeExpectancy": 71.198,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.793766"
+    },
+    "TD": {
+      "name": "Chad",
+      "iso3": "TCD",
+      "lifeExpectancy": 55.069,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.793907"
+    },
+    "CR": {
+      "name": "Costa Rica",
+      "iso3": "CRI",
+      "lifeExpectancy": 80.799,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.793963"
+    },
+    "BT": {
+      "name": "Bhutan",
+      "iso3": "BTN",
+      "lifeExpectancy": 72.975,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.794011"
+    },
+    "PE": {
+      "name": "Peru",
+      "iso3": "PER",
+      "lifeExpectancy": 77.74,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.794149"
+    },
+    "KE": {
+      "name": "Kenya",
+      "iso3": "KEN",
+      "lifeExpectancy": 63.646,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.794286"
+    },
+    "BA": {
+      "name": "Bosnia and Herzegovina",
+      "iso3": "BIH",
+      "lifeExpectancy": 77.85,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.794399"
+    },
+    "CG": {
+      "name": "Congo, Rep.",
+      "iso3": "COG",
+      "lifeExpectancy": 65.772,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.794454"
+    },
+    "MH": {
+      "name": "Marshall Islands",
+      "iso3": "MHL",
+      "lifeExpectancy": 66.945,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.794509"
+    },
+    "SO": {
+      "name": "Somalia",
+      "iso3": "SOM",
+      "lifeExpectancy": 58.816,
+      "year": 2023,
+      "lastUpdated": "2025-07-15T20:16:17.794573"
+    }
+  }
+}
