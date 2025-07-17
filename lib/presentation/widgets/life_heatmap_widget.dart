@@ -266,7 +266,9 @@ class _LifeHeatmapWidgetState extends State<LifeHeatmapWidget> {
     // Create mood mapping by week
     final moodsByWeek = <int, List<MoodEntry>>{};
     for (final mood in moodEntries) {
-      final weekIndex = mood.timestampUtc.difference(birthDate).inDays ~/ 7;
+      // Convert UTC timestamp to local time for consistent week calculation
+      final moodLocalDate = mood.timestampUtc.toLocal();
+      final weekIndex = moodLocalDate.difference(birthDate).inDays ~/ 7;
       moodsByWeek.putIfAbsent(weekIndex, () => []).add(mood);
     }
 
@@ -327,10 +329,10 @@ class _LifeHeatmapWidgetState extends State<LifeHeatmapWidget> {
       final weekMoods = moodsByWeek[weekIndex] ?? [];
 
       if (weekMoods.isNotEmpty) {
-        // Calculate average mood for the week and round to nearest integer
-        final averageMood = weekMoods.map((e) => e.moodScore).reduce((a, b) => a + b) / weekMoods.length;
-        final roundedMood = averageMood.roundToDouble();
-        dotColor = MoodVocabulary.getColorForScore(roundedMood);
+        // Use last mood entry of the week (user preference)
+        weekMoods.sort((a, b) => a.timestampUtc.compareTo(b.timestampUtc));
+        final lastMood = weekMoods.last;
+        dotColor = MoodVocabulary.getColorForScore(lastMood.moodScore.toDouble());
         hasMoodData = true;
       } else {
         // No mood data - grey

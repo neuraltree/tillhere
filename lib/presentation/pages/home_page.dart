@@ -15,6 +15,8 @@ import '../widgets/app_bar_widget.dart';
 import '../widgets/app_drawer.dart';
 import '../widgets/fixed_text_input.dart';
 import '../widgets/heatmap_setup_dialog.dart';
+import '../widgets/life_settings_dialog.dart';
+import 'all_entries_page.dart';
 
 /// Home page - main mood tracking interface
 /// Following Clean Architecture principles - presentation layer
@@ -100,8 +102,6 @@ class _HomePageState extends State<HomePage> {
 
   /// Build main content area
   Widget _buildMainContent(BuildContext context, NavigationProvider navigationProvider) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20),
       child: Column(
@@ -179,7 +179,12 @@ class _HomePageState extends State<HomePage> {
           );
         }
 
-        return Column(children: moodEntries.take(5).map((entry) => _buildMoodEntryCard(context, entry)).toList());
+        return Column(
+          children: [
+            ...moodEntries.take(5).map((entry) => _buildMoodEntryCard(context, entry)),
+            if (moodEntries.isNotEmpty) ...[const SizedBox(height: 16), _buildSeeMoreLink(context)],
+          ],
+        );
       },
     );
   }
@@ -206,6 +211,23 @@ class _HomePageState extends State<HomePage> {
         // Sort by timestamp descending (most recent first) and take last 5
         allMoods.sort((a, b) => b.timestampUtc.compareTo(a.timestampUtc));
         return allMoods.take(5).toList();
+      } else {
+        throw Exception(result.failure?.message ?? 'Failed to load mood entries');
+      }
+    } catch (e) {
+      throw Exception('Error loading mood entries: $e');
+    }
+  }
+
+  /// Get all mood entries from database (for heatmaps)
+  Future<List<MoodEntry>> _getAllMoodEntries() async {
+    try {
+      final databaseHelper = DatabaseHelper();
+      final moodRepository = MoodRepositoryImpl(databaseHelper);
+
+      final result = await moodRepository.getAllMoods();
+      if (result.isSuccess) {
+        return result.data ?? [];
       } else {
         throw Exception(result.failure?.message ?? 'Failed to load mood entries');
       }
@@ -306,10 +328,33 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  /// Build "See more" link with Apple design standards
+  Widget _buildSeeMoreLink(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    return Center(
+      child: GestureDetector(
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const AllEntriesPage()));
+        },
+        child: Text(
+          'See more',
+          style: TextStyle(
+            color: isDark ? AppColors.neonGreen : AppColors.cosmicBlue,
+            fontSize: 16, // Callout size per Apple standards
+            fontWeight: FontWeight.w400, // Regular weight
+            decoration: TextDecoration.underline,
+            decorationColor: isDark ? AppColors.neonGreen : AppColors.cosmicBlue,
+          ),
+        ),
+      ),
+    );
+  }
+
   /// Build compact weekly view with TODAY column, weekday labels, and week blocks
   Widget _buildCompactMonthlyView(BuildContext context) {
     return FutureBuilder<List<MoodEntry>>(
-      future: _getRecentMoodEntries(),
+      future: _getAllMoodEntries(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return _buildHeatmapLoadingState(context, 'This Week');
@@ -639,7 +684,7 @@ class _HomePageState extends State<HomePage> {
         }
 
         return FutureBuilder<List<MoodEntry>>(
-          future: _getRecentMoodEntries(),
+          future: _getAllMoodEntries(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return _buildHeatmapLoadingState(context, 'This Life');
@@ -774,6 +819,11 @@ class _HomePageState extends State<HomePage> {
     showDialog(context: context, builder: (context) => const HeatmapSetupDialog());
   }
 
+  /// Show life settings dialog for changing birthday and location
+  void _showLifeSettingsDialog(BuildContext context) {
+    showDialog(context: context, builder: (context) => const LifeSettingsDialog());
+  }
+
   /// Get contrasting text color for background
   Color _getContrastColor(Color backgroundColor) {
     // Calculate luminance to determine if we need light or dark text
@@ -795,13 +845,27 @@ class _HomePageState extends State<HomePage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'One life...',
-          style: TextStyle(
-            color: isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight,
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
-          ),
+        // Title row with settings icon
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'One life...',
+              style: TextStyle(
+                color: isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight,
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            GestureDetector(
+              onTap: () => _showLifeSettingsDialog(context),
+              child: Icon(
+                Icons.settings,
+                size: 16, // xs size
+                color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight,
+              ),
+            ),
+          ],
         ),
         const SizedBox(height: 8),
         _buildLifetimeGrid(context, lifetimeYears, moodEntries, blocksPerRow, settings.dateOfBirth!),

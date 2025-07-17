@@ -8,13 +8,14 @@ import 'package:sqflite/sqflite.dart';
 /// Manages database creation, migrations, and provides access to the database instance
 class DatabaseHelper {
   static const String _databaseName = 'tillhere_mood.db';
-  static const int _databaseVersion = 2;
+  static const int _databaseVersion = 3;
 
   // Table names
   static const String tableMoodEntry = 'mood_entry';
   static const String tableTag = 'tag';
   static const String tableMoodTag = 'mood_tag';
   static const String tableSettings = 'settings';
+  static const String tableNotificationSettings = 'notification_settings';
 
   // Mood entry table columns
   static const String columnMoodId = 'id';
@@ -35,6 +36,17 @@ class DatabaseHelper {
   static const String columnSettingsValue = 'value';
   static const String columnSettingsType = 'type';
   static const String columnSettingsUpdatedAt = 'updated_at';
+
+  // Notification settings table columns
+  static const String columnNotificationId = 'id';
+  static const String columnNotificationEnabled = 'enabled';
+  static const String columnNotificationTitle = 'title';
+  static const String columnNotificationBody = 'body';
+  static const String columnNotificationScheduleType = 'schedule_type'; // 'daily', 'weekly', 'custom'
+  static const String columnNotificationTime = 'time'; // Time in HH:mm format
+  static const String columnNotificationDaysOfWeek = 'days_of_week'; // JSON array for weekly schedules
+  static const String columnNotificationCreatedAt = 'created_at';
+  static const String columnNotificationUpdatedAt = 'updated_at';
 
   static Database? _database;
 
@@ -84,9 +96,37 @@ class DatabaseHelper {
 
   /// Handle database upgrades
   Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
-    // Handle future database migrations here
-    if (oldVersion < newVersion) {
-      // For now, just recreate tables (in production, implement proper migrations)
+    // Handle database migrations
+    if (oldVersion < 3 && newVersion >= 3) {
+      // Add notification_settings table in version 3
+      await db.execute('''
+        CREATE TABLE $tableNotificationSettings (
+          $columnNotificationId TEXT PRIMARY KEY,
+          $columnNotificationEnabled INTEGER NOT NULL DEFAULT 1,
+          $columnNotificationTitle TEXT NOT NULL,
+          $columnNotificationBody TEXT NOT NULL,
+          $columnNotificationScheduleType TEXT NOT NULL DEFAULT 'daily',
+          $columnNotificationTime TEXT NOT NULL,
+          $columnNotificationDaysOfWeek TEXT,
+          $columnNotificationCreatedAt INTEGER NOT NULL,
+          $columnNotificationUpdatedAt INTEGER NOT NULL
+        )
+      ''');
+
+      // Add indexes for notification settings
+      await db.execute('''
+        CREATE INDEX idx_notification_enabled
+        ON $tableNotificationSettings($columnNotificationEnabled)
+      ''');
+
+      await db.execute('''
+        CREATE INDEX idx_notification_schedule_type
+        ON $tableNotificationSettings($columnNotificationScheduleType)
+      ''');
+    }
+
+    // For any other version changes, recreate tables (fallback)
+    if (oldVersion < newVersion && oldVersion < 2) {
       await _dropTables(db);
       await _createTables(db);
       await _createIndexes(db);
@@ -131,6 +171,21 @@ class DatabaseHelper {
         $columnSettingsUpdatedAt INTEGER NOT NULL
       )
     ''');
+
+    // Create notification_settings table
+    await db.execute('''
+      CREATE TABLE $tableNotificationSettings (
+        $columnNotificationId TEXT PRIMARY KEY,
+        $columnNotificationEnabled INTEGER NOT NULL DEFAULT 1,
+        $columnNotificationTitle TEXT NOT NULL,
+        $columnNotificationBody TEXT NOT NULL,
+        $columnNotificationScheduleType TEXT NOT NULL DEFAULT 'daily',
+        $columnNotificationTime TEXT NOT NULL,
+        $columnNotificationDaysOfWeek TEXT,
+        $columnNotificationCreatedAt INTEGER NOT NULL,
+        $columnNotificationUpdatedAt INTEGER NOT NULL
+      )
+    ''');
   }
 
   /// Create database indexes for better performance
@@ -163,6 +218,18 @@ class DatabaseHelper {
       CREATE INDEX idx_mood_tag_tag_id
       ON $tableMoodTag($columnMoodTagTagId)
     ''');
+
+    // Index on notification settings enabled status
+    await db.execute('''
+      CREATE INDEX idx_notification_enabled
+      ON $tableNotificationSettings($columnNotificationEnabled)
+    ''');
+
+    // Index on notification settings schedule type
+    await db.execute('''
+      CREATE INDEX idx_notification_schedule_type
+      ON $tableNotificationSettings($columnNotificationScheduleType)
+    ''');
   }
 
   /// Drop all tables (used for migrations)
@@ -171,6 +238,7 @@ class DatabaseHelper {
     await db.execute('DROP TABLE IF EXISTS $tableTag');
     await db.execute('DROP TABLE IF EXISTS $tableMoodEntry');
     await db.execute('DROP TABLE IF EXISTS $tableSettings');
+    await db.execute('DROP TABLE IF EXISTS $tableNotificationSettings');
   }
 
   /// Close the database

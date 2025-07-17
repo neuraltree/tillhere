@@ -3,21 +3,19 @@
 abstract class Failure {
   final String message;
   final String? code;
-  
+
   const Failure(this.message, {this.code});
-  
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    
-    return other is Failure &&
-        other.message == message &&
-        other.code == code;
+
+    return other is Failure && other.message == message && other.code == code;
   }
-  
+
   @override
   int get hashCode => message.hashCode ^ code.hashCode;
-  
+
   @override
   String toString() => 'Failure(message: $message, code: $code)';
 }
@@ -55,6 +53,11 @@ class CacheFailure extends Failure {
 /// Permission-related failures
 class PermissionFailure extends Failure {
   const PermissionFailure(super.message, {super.code});
+}
+
+/// Notification-related failures
+class NotificationFailure extends Failure {
+  const NotificationFailure(super.message, {super.code});
 }
 
 /// Unknown/unexpected failures

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../entities/mood_entry.dart';
 import '../entities/mood_vocabulary.dart';
@@ -8,41 +7,49 @@ import '../entities/mood_vocabulary.dart';
 /// Following Clean Architecture principles - core utilities
 class MoodConsolidationUtils {
   /// Consolidate mood entries for a specific day
-  /// Returns the average mood score for that day rounded to nearest integer, or null if no entries
+  /// Returns the last mood score for that day (user preference), or null if no entries
   static double? consolidateDailyMood(List<MoodEntry> entries, DateTime targetDate) {
+    // Normalize target date to start of day for consistent comparison
+    final targetDateNormalized = DateTime(targetDate.year, targetDate.month, targetDate.day);
+
     final dayEntries = entries.where((entry) {
       final entryDate = entry.timestampUtc.toLocal();
-      return DateFormat('yyyy-MM-dd').format(entryDate) == DateFormat('yyyy-MM-dd').format(targetDate);
+      final entryDateNormalized = DateTime(entryDate.year, entryDate.month, entryDate.day);
+      return entryDateNormalized == targetDateNormalized;
     }).toList();
 
     if (dayEntries.isEmpty) return null;
 
-    // Calculate average mood score for the day and round to nearest integer
-    final totalScore = dayEntries.map((entry) => entry.moodScore.toDouble()).reduce((a, b) => a + b);
-    final averageScore = totalScore / dayEntries.length;
-    return averageScore.roundToDouble();
+    // Sort by timestamp to get the last entry of the day (user preference)
+    dayEntries.sort((a, b) => a.timestampUtc.compareTo(b.timestampUtc));
+    final lastEntry = dayEntries.last;
+    return lastEntry.moodScore.toDouble();
   }
 
   /// Consolidate mood entries for a specific week
-  /// Returns the average mood score for that week rounded to nearest integer, or null if no entries
+  /// Returns the last mood score for that week (user preference), or null if no entries
   static double? consolidateWeeklyMood(List<MoodEntry> entries, DateTime weekStart) {
-    final weekEnd = weekStart.add(const Duration(days: 7));
+    // Normalize week start to start of day
+    final weekStartNormalized = DateTime(weekStart.year, weekStart.month, weekStart.day);
+    final weekEndNormalized = weekStartNormalized.add(const Duration(days: 7));
 
     final weekEntries = entries.where((entry) {
       final entryDate = entry.timestampUtc.toLocal();
-      return entryDate.isAfter(weekStart.subtract(const Duration(days: 1))) && entryDate.isBefore(weekEnd);
+      final entryDateNormalized = DateTime(entryDate.year, entryDate.month, entryDate.day);
+      return entryDateNormalized.isAtSameMomentAs(weekStartNormalized) ||
+          (entryDateNormalized.isAfter(weekStartNormalized) && entryDateNormalized.isBefore(weekEndNormalized));
     }).toList();
 
     if (weekEntries.isEmpty) return null;
 
-    // Calculate average mood score for the week and round to nearest integer
-    final totalScore = weekEntries.map((entry) => entry.moodScore.toDouble()).reduce((a, b) => a + b);
-    final averageScore = totalScore / weekEntries.length;
-    return averageScore.roundToDouble();
+    // Sort by timestamp to get the last entry of the week (user preference)
+    weekEntries.sort((a, b) => a.timestampUtc.compareTo(b.timestampUtc));
+    final lastEntry = weekEntries.last;
+    return lastEntry.moodScore.toDouble();
   }
 
   /// Consolidate mood entries for a specific month
-  /// Returns the average mood score for that month rounded to nearest integer, or null if no entries
+  /// Returns the last mood score for that month (user preference), or null if no entries
   static double? consolidateMonthlyMood(List<MoodEntry> entries, DateTime targetMonth) {
     final monthEntries = entries.where((entry) {
       final entryDate = entry.timestampUtc.toLocal();
@@ -51,14 +58,14 @@ class MoodConsolidationUtils {
 
     if (monthEntries.isEmpty) return null;
 
-    // Calculate average mood score for the month and round to nearest integer
-    final totalScore = monthEntries.map((entry) => entry.moodScore.toDouble()).reduce((a, b) => a + b);
-    final averageScore = totalScore / monthEntries.length;
-    return averageScore.roundToDouble();
+    // Sort by timestamp to get the last entry of the month (user preference)
+    monthEntries.sort((a, b) => a.timestampUtc.compareTo(b.timestampUtc));
+    final lastEntry = monthEntries.last;
+    return lastEntry.moodScore.toDouble();
   }
 
   /// Consolidate mood entries for a specific year
-  /// Returns the average mood score for that year rounded to nearest integer, or null if no entries
+  /// Returns the last mood score for that year (user preference), or null if no entries
   static double? consolidateYearlyMood(List<MoodEntry> entries, int targetYear) {
     final yearEntries = entries.where((entry) {
       final entryDate = entry.timestampUtc.toLocal();
@@ -67,10 +74,10 @@ class MoodConsolidationUtils {
 
     if (yearEntries.isEmpty) return null;
 
-    // Calculate average mood score for the year and round to nearest integer
-    final totalScore = yearEntries.map((entry) => entry.moodScore.toDouble()).reduce((a, b) => a + b);
-    final averageScore = totalScore / yearEntries.length;
-    return averageScore.roundToDouble();
+    // Sort by timestamp to get the last entry of the year (user preference)
+    yearEntries.sort((a, b) => a.timestampUtc.compareTo(b.timestampUtc));
+    final lastEntry = yearEntries.last;
+    return lastEntry.moodScore.toDouble();
   }
 
   /// Get color for consolidated mood score

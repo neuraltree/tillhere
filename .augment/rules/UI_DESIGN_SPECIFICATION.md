@@ -1,3 +1,7 @@
+---
+type: "agent_requested"
+description: "TillHere - Mood Tracking App UI Design Specification"
+---
 # TillHere - Mood Tracking App UI Design Specification
 
 ## 🎨 Design Philosophy

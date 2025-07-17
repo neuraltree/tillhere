@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../core/entities/mood_vocabulary.dart';
+import '../../core/services/deep_linking_service.dart';
 import '../../data/datasources/local/database_helper.dart';
 import '../../data/repositories/mood_repository_impl.dart';
 import '../providers/mood_capture_provider.dart';
@@ -24,6 +25,7 @@ class _FixedTextInputState extends State<FixedTextInput> {
   late TextEditingController _controller;
   late FocusNode _focusNode;
   int? _selectedMoodScore = 7; // Default to happy
+  bool _isSliderActive = false; // Track if slider is being touched/moved
 
   @override
   void initState() {
@@ -134,6 +136,18 @@ class _FixedTextInputState extends State<FixedTextInput> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    return NotificationListener<MoodInputFocusNotification>(
+      onNotification: (notification) {
+        // Focus the text input when notification is received
+        _focusNode.requestFocus();
+        return true;
+      },
+      child: _buildInputWidget(context, isDark),
+    );
+  }
+
+  Widget _buildInputWidget(BuildContext context, bool isDark) {
     final mediaQuery = MediaQuery.of(context);
     final bottomPadding = mediaQuery.padding.bottom;
 
@@ -285,6 +299,11 @@ class _FixedTextInputState extends State<FixedTextInput> {
                   min: 1,
                   max: 10,
                   divisions: 9,
+                  onChangeStart: (value) {
+                    setState(() {
+                      _isSliderActive = true;
+                    });
+                  },
                   onChanged: (value) {
                     setState(() {
                       _selectedMoodScore = value.round();
@@ -299,11 +318,16 @@ class _FixedTextInputState extends State<FixedTextInput> {
                       debugPrint('MoodCaptureProvider not available: $e');
                     }
                   },
+                  onChangeEnd: (value) {
+                    setState(() {
+                      _isSliderActive = false;
+                    });
+                  },
                 ),
               ),
 
-              // Bubble tooltip
-              if (_selectedMoodScore != null)
+              // Bubble tooltip - only show when slider is being touched/moved
+              if (_selectedMoodScore != null && _isSliderActive)
                 Positioned(
                   left: _getBubblePosition(),
                   top: -40,
@@ -452,7 +476,7 @@ class _FixedTextInputState extends State<FixedTextInput> {
               ),
               onTap: () {
                 Navigator.pop(context);
-                // TODO: Show date/time picker
+                _showDateTimePicker(context);
               },
             ),
 
@@ -469,24 +493,7 @@ class _FixedTextInputState extends State<FixedTextInput> {
               ),
               onTap: () {
                 Navigator.pop(context);
-                // TODO: Show tags selector
-              },
-            ),
-
-            // Location setting
-            ListTile(
-              leading: Icon(Icons.location_on, color: AppColors.cosmicBlue),
-              title: Text(
-                'Add Location',
-                style: TextStyle(color: isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight),
-              ),
-              subtitle: Text(
-                'Remember where you felt this way',
-                style: TextStyle(color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight),
-              ),
-              onTap: () {
-                Navigator.pop(context);
-                // TODO: Show location picker
+                _showTagsSelector(context);
               },
             ),
 
@@ -504,6 +511,136 @@ class _FixedTextInputState extends State<FixedTextInput> {
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                 ),
                 child: const Text('Done'),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// Show date/time picker for setting custom entry time
+  void _showDateTimePicker(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => _buildDateTimePickerModal(context),
+    );
+  }
+
+  /// Show tags selector for adding tags to mood entry
+  void _showTagsSelector(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => _buildTagsSelectorModal(context),
+    );
+  }
+
+  /// Build date/time picker modal
+  Widget _buildDateTimePickerModal(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    return Container(
+      margin: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: isDark ? AppColors.backgroundSecondaryDark : AppColors.backgroundSecondaryLight,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Set Date & Time',
+              style: TextStyle(
+                color: isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight,
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(height: 20),
+
+            Text(
+              'This feature will be available soon to set custom dates for past mood entries.',
+              style: TextStyle(
+                color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight,
+                fontSize: 14,
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () => Navigator.pop(context),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.neonGreen,
+                  foregroundColor: AppColors.backgroundPrimaryDark,
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                ),
+                child: const Text('Got it'),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// Build tags selector modal
+  Widget _buildTagsSelectorModal(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    return Container(
+      margin: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: isDark ? AppColors.backgroundSecondaryDark : AppColors.backgroundSecondaryLight,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Add Tags',
+              style: TextStyle(
+                color: isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight,
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(height: 20),
+
+            Text(
+              'This feature will be available soon to add custom tags to categorize your mood entries.',
+              style: TextStyle(
+                color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight,
+                fontSize: 14,
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () => Navigator.pop(context),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.neonGreen,
+                  foregroundColor: AppColors.backgroundPrimaryDark,
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                ),
+                child: const Text('Got it'),
               ),
             ),
           ],

@@ -1,3 +1,7 @@
+---
+type: "agent_requested"
+description: "Clean Architecture for Flutter (Uncle Bob's Architecture)"
+---
 # Clean Architecture for Flutter (Uncle Bob's Architecture)
 
 ## Overview
@@ -32,7 +36,7 @@ class User {
   final String id;
   final String email;
   final String name;
-  
+
   User({required this.id, required this.email, required this.name});
 }
 ```

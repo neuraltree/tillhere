@@ -1,3 +1,7 @@
+---
+type: "agent_requested"
+description: "Apple Design Standards & Aesthetic Guidelines"
+---
 # Apple Design Standards & Aesthetic Guidelines
 
 ## Overview
@@ -33,7 +37,7 @@ This document outlines Apple's design principles and aesthetic standards to be f
 ### Text Styles
 ```dart
 // Large Title: 34pt, Regular
-// Title 1: 28pt, Regular  
+// Title 1: 28pt, Regular
 // Title 2: 22pt, Regular
 // Title 3: 20pt, Regular
 // Headline: 17pt, Semibold

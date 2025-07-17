@@ -1,3 +1,7 @@
+---
+type: "agent_requested"
+description: "Mood Tracking System Implementation"
+---
 # Mood Tracking System Implementation
 
 This document describes the implementation of a SQLite-based mood tracking system following Clean Architecture principles.

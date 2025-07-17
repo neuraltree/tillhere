@@ -1,3 +1,7 @@
+---
+type: "agent_requested"
+description: "Platform Capabilities Configuration Summary"
+---
 # Platform Capabilities Configuration Summary
 
 ## Overview

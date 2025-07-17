@@ -140,14 +140,18 @@ class _WeeklyHeatmapWidgetState extends State<WeeklyHeatmapWidget> {
   Widget _buildWeeklyGrid(BuildContext context) {
     final now = DateTime.now();
     final startOfWeek = now.subtract(Duration(days: now.weekday - 1)); // Monday
+    final startOfWeekNormalized = DateTime(startOfWeek.year, startOfWeek.month, startOfWeek.day);
 
     // Group moods by day for this week
     final moodsByDay = <int, List<MoodEntry>>{};
     for (final mood in _moodEntries) {
       final moodDate = mood.timestampUtc.toLocal();
-      if (moodDate.isAfter(startOfWeek.subtract(const Duration(days: 1))) &&
-          moodDate.isBefore(startOfWeek.add(const Duration(days: 7)))) {
-        final dayIndex = moodDate.weekday - 1; // 0 = Monday, 6 = Sunday
+      final moodDateNormalized = DateTime(moodDate.year, moodDate.month, moodDate.day);
+
+      // Check if mood date falls within this week (Monday to Sunday)
+      final daysDifference = moodDateNormalized.difference(startOfWeekNormalized).inDays;
+      if (daysDifference >= 0 && daysDifference < 7) {
+        final dayIndex = daysDifference; // 0 = Monday, 6 = Sunday
         moodsByDay.putIfAbsent(dayIndex, () => []).add(mood);
       }
     }
@@ -156,7 +160,7 @@ class _WeeklyHeatmapWidgetState extends State<WeeklyHeatmapWidget> {
       height: 60,
       child: Row(
         children: List.generate(7, (dayIndex) {
-          final date = startOfWeek.add(Duration(days: dayIndex));
+          final date = startOfWeekNormalized.add(Duration(days: dayIndex));
           final dayMoods = moodsByDay[dayIndex] ?? [];
 
           return Expanded(child: _buildDayBlock(context, date, dayMoods, dayIndex));
@@ -167,15 +171,18 @@ class _WeeklyHeatmapWidgetState extends State<WeeklyHeatmapWidget> {
 
   Widget _buildDayBlock(BuildContext context, DateTime date, List<MoodEntry> dayMoods, int dayIndex) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final isToday = DateFormat('yyyy-MM-dd').format(date) == DateFormat('yyyy-MM-dd').format(DateTime.now());
+    final now = DateTime.now();
+    final todayNormalized = DateTime(now.year, now.month, now.day);
+    final dateNormalized = DateTime(date.year, date.month, date.day);
+    final isToday = dateNormalized == todayNormalized;
 
     Color blockColor;
     if (dayMoods.isNotEmpty) {
-      // Calculate average mood for the day and round to nearest integer
-      final averageMood = dayMoods.map((e) => e.moodScore).reduce((a, b) => a + b) / dayMoods.length;
-      final roundedMood = averageMood.roundToDouble();
-      blockColor = MoodVocabulary.getColorForScore(roundedMood);
-    } else if (date.isAfter(DateTime.now())) {
+      // Use last mood entry of the day (user preference)
+      dayMoods.sort((a, b) => a.timestampUtc.compareTo(b.timestampUtc));
+      final lastMood = dayMoods.last;
+      blockColor = MoodVocabulary.getColorForScore(lastMood.moodScore.toDouble());
+    } else if (dateNormalized.isAfter(todayNormalized)) {
       // Future days - light grey
       blockColor = Colors.grey.shade300;
     } else {

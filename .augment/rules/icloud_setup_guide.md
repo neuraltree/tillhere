@@ -1,3 +1,7 @@
+---
+type: "agent_requested"
+description: "iCloud Setup Guide for TillHere App"
+---
 # iCloud Setup Guide for TillHere App
 
 ## Overview
@@ -121,11 +125,11 @@ import 'package:icloud_storage/icloud_storage.dart';
 
 class ICloudService {
   static const String _moodDataKey = 'mood_data';
-  
+
   Future<bool> isICloudAvailable() async {
     return await ICloudStorage.isICloudAvailable();
   }
-  
+
   Future<void> uploadMoodData(String jsonData) async {
     await ICloudStorage.upload(
       containerId: 'iCloud.$(CFBundleIdentifier)',
@@ -133,7 +137,7 @@ class ICloudService {
       fileData: jsonData,
     );
   }
-  
+
   Future<String?> downloadMoodData() async {
     return await ICloudStorage.download(
       containerId: 'iCloud.$(CFBundleIdentifier)',

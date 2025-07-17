@@ -1,12 +1,16 @@
 import '../../core/repositories/navigation_repository.dart';
 import '../../core/repositories/mood_repository.dart';
+import '../../core/repositories/notification_repository.dart';
+import '../../core/services/notification_service.dart';
 import '../../core/usecases/navigation_usecases.dart';
 import '../../data/datasources/local/database_helper.dart';
 import '../../data/repositories/navigation_repository_impl.dart';
 import '../../data/repositories/mood_repository_impl.dart';
+import '../../data/repositories/notification_repository_impl.dart';
 import '../../presentation/providers/navigation_provider.dart';
 import '../../presentation/providers/mood_capture_provider.dart';
 import '../../presentation/providers/settings_provider.dart';
+import '../../presentation/providers/notification_provider.dart';
 
 /// Dependency injection setup
 /// Following Clean Architecture principles - dependency management
@@ -16,6 +20,9 @@ class DependencyInjection {
   static MoodRepository? _moodRepository;
   static MoodCaptureProvider? _moodCaptureProvider;
   static SettingsProvider? _settingsProvider;
+  static NotificationRepositoryImpl? _notificationRepository;
+  static NotificationService? _notificationService;
+  static NotificationProvider? _notificationProvider;
   static DatabaseHelper? _databaseHelper;
 
   /// Initialize dependencies
@@ -26,6 +33,10 @@ class DependencyInjection {
     // Repositories
     _navigationRepository = NavigationRepositoryImpl();
     _moodRepository = MoodRepositoryImpl(_databaseHelper!);
+    _notificationRepository = NotificationRepositoryImpl(_databaseHelper!);
+
+    // Services
+    _notificationService = NotificationService();
 
     // Navigation use cases
     final navigateToRouteUseCase = NavigateToRouteUseCase(_navigationRepository!);
@@ -49,6 +60,12 @@ class DependencyInjection {
 
     // Settings provider
     _settingsProvider = SettingsProvider.create();
+
+    // Notification provider
+    _notificationProvider = NotificationProvider(
+      notificationRepository: _notificationRepository!,
+      notificationService: _notificationService!,
+    );
   }
 
   /// Get navigation provider instance
@@ -83,13 +100,28 @@ class DependencyInjection {
     return _settingsProvider!;
   }
 
+  /// Get notification provider instance
+  static NotificationProvider get notificationProvider {
+    if (_notificationProvider == null) {
+      throw Exception('DependencyInjection not initialized. Call initialize() first.');
+    }
+    return _notificationProvider!;
+  }
+
+  /// Get notification service instance
+  static NotificationService? get notificationService => _notificationService;
+
   /// Dispose resources
   static void dispose() {
     _navigationRepository?.dispose();
     _navigationProvider?.dispose();
     _settingsProvider?.dispose();
+    _notificationProvider?.dispose();
     _navigationRepository = null;
     _navigationProvider = null;
     _settingsProvider = null;
+    _notificationRepository = null;
+    _notificationService = null;
+    _notificationProvider = null;
   }
 }
